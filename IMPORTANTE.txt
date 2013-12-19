@@ -1,0 +1,156 @@
+Datamancer
+==========
+
+* Query field en extract, sirve para refinar la búsqueda pero no lo incluye en el datastream.
+* Data stream object, con métodos como uniq, where, find, not, index, joins.
+* Posible bug con los condicionales de línea en transform cuando "exclude: true".
+* Multimapping.
+* Fastcheck / temporal data store / reanudar.
+* Don't allow "extract: true" without block.
+* rename_field en transform.
+* Lambda for default value?
+
+==========
+
+
+Tablas no usadas
+----------------
+
+  * lk_loc_tipo_local
+  * lk_jur_jurisdiccion
+
+lk_bal_*
+--------
+
+  * ArrM: inivel -> nivel
+  * ArrM: Campos no NULL.
+
+lk_cron_cronograma
+------------------
+
+  * Se cambió el datatype del id por varchar para usar el que viene de Sinensup.
+  * Aparentemente esta tabla estaría conectada con las tablas temporales, pero no.
+
+ft_auditor_actuario
+-------------------
+
+  * ArrM: Todos los campos son primary key.
+
+lk_aud_auditor_actuario
+-----------------------
+
+  * Dirección: no tiene sentido si no se tiene la localidad.
+  * Matrícula: no tiene sentido si no se tiene la matriculación, tampoco hay datos.
+  * ArrM: Se crean id_aud_estado, id_aud_tipo, id_aud_cuit, id_aud_fecha_resolucion.
+  * ArrM: Se aumenta el varchar de ds_aud_pais.
+  * Fecha resolución: Sigue el problema de las fechas.
+  * nvarchar de los campos bastante desajustados.
+
+ft_personal_locales
+-------------------
+
+  * ArrM: Todos los campos son primary key.
+  * ArrM: id_pro_jurisdiccion -> id_com_provincia
+  * ArrM: id_tie_dia -> id_tie_anio
+  * ArrM: id_loc_tipo_local -> id_com_tipo_sucursal
+
+ft_produccion
+-------------
+
+  * ArrM: Todos los campos son primary key.
+  * ArrM: i_pro_imp_produccion NULL permitido.
+  * ArrM: id_pro_jurisdiccion -> id_com_provincia
+  * ArrM: id_tie_dia -> id_tie_anio
+
+lk_tie_dia
+----------
+
+  * El día debería ser data en vez de datetime.
+
+ft_accionista
+-------------
+
+  * ArrM:: Todos los campos son primary key.
+  * No hay datos para i_acc_cant_acciones_suscrip.
+  * No hay datos para fechas.
+  * Tiene id_acc_personeria cuando debería figurar al menos en lk_acc_accionista.
+  * Me pregunto cuál es el objetivo de tener la personería y la nacionalidad en esta
+tabla si van mejor en lk_acc_accionista, tabla que debe ser llamada sí o sí porque
+contiene los nombres de los accionistas.
+
+lk_acc_accionista
+-----------------
+
+  * cd_acc_accionista es int, cuando suele ser varchar.
+  * La dirección no es muy útil, porque se carece de la localidad.
+  * No hay datos (ni columna) para DNI o CUIT.
+
+lk_dir_persona_directorio
+-------------------------
+
+  * Hay para DNI. Se usa sólo CUIT.
+  * Fecha de nacimiento. ¿Útil? Me parece que no.
+
+ft_directorio
+-------------
+
+  * ArrM: Todos los campos son primary key.
+  * FECHAS: Están mal. El formato de SQL Server es YYYYDDMM.
+
+lk_com_gerente
+--------------
+
+  * No hay CUIL. (Se usa DNI.)
+  * Hay gerentes repetidos, culpa de Entidades.
+
+lk_com_sucursal
+---------------
+
+  * cd_com_sucursal es int, debería ser varchar.
+  * id_com_provincia_suc es varchar, debería ser int; ¡además debería ser foreign key!
+  * Código postal se queda corto.
+  * Hay algunas casas matrices que figuran como sucursal.
+  * Sería mejor si sucursal se llama local (igual lk_com_tipo_sucursal).
+
+LK_COM_COMPANIA
+---------------
+
+  * Cierre_Balance DATETIME.
+  * ¿Porqué mayús?
+  * ¿id_codigo_postal?
+  * ¿id_cierre_balance?
+  * ¿id_localidad?
+  * ¿id_reaseguradora?
+  * Fax, teléfono, código postal se quedan cortos.
+
+lk_com_provincia
+----------------
+
+  * CABA redundante.
+
+lk_com_grupo_compania
+---------------------
+
+  * Registro "SIN REGISTRAR" redundante.
+  * Un grupo sin espacios entre "///".
+
+lk_com_segmentacion
+-------------------
+
+  * Definir la segmentación.
+  * Asignársela a las compañías.
+
+lk_com_actividad1, lk_com_actividad2, lk_com_estado_companias
+-------------------------------------------------------------
+
+  * Abreviaciones innecesarias.
+
+VIEJO
+-----
+
+jruby transmigrador.rb migrar cuentas --periodos 2008-3:2013-4 --frecuencia trimestral --companias todas 2> errores.log
+
+JVM GC a 2GB.
+
+[mysqld]
+max_allowed_packet=16M

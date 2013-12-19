@@ -1,0 +1,45 @@
+List<Object[]> cuenta1=cs.getSumCuentaByCodigoCompletoPCU("5.01.01.01.01.01.01.00", entrega.getPlanVigente()); //* 1; 
+for (Object[] objects : cuenta1) {
+  mapaAuxSubramo.put(objects[0].toString(), mapaAuxSubramo.get(objects[0]) + (((Long) objects[1]) * 1));
+}
+List<Object[]> cuenta2=cs.getSumCuentaByCodigoCompletoPCU("5.01.01.01.01.02.01.00", entrega.getPlanVigente()); //*  1;
+for (Object[] objects : cuenta2) {
+  mapaAuxSubramo.put(objects[0].toString(), mapaAuxSubramo.get(objects[0]) + (((Long) objects[1]) * 1));
+}
+List<Object[]> cuenta3=cs.getSumCuentaByCodigoCompletoPCU("5.01.01.01.01.03.01.00", entrega.getPlanVigente()); //*  1;
+for (Object[] objects : cuenta3) {
+  mapaAuxSubramo.put(objects[0].toString(), mapaAuxSubramo.get(objects[0]) + (((Long) objects[1]) * 1));
+}
+List<Object[]> cuenta4=cs.getSumCuentaByCodigoCompletoPCU("4.01.04.04.04.01.00.00", entrega.getPlanVigente());// *  -1;
+for (Object[] objects : cuenta4) {
+  mapaAuxSubramo.put(objects[0].toString(), mapaAuxSubramo.get(objects[0]) + (((Long) objects[1]) * -1));
+}
+List<Object[]> cuenta5=cs.getSumCuentaByCodigoCompletoPCU("4.01.04.04.04.02.00.00", entrega.getPlanVigente());// *  -1;
+for (Object[] objects : cuenta5) {
+  mapaAuxSubramo.put(objects[0].toString(), mapaAuxSubramo.get(objects[0]) + (((Long) objects[1]) * -1));
+}
+List<Object[]> cuenta6=cs.getSumCuentaByCodigoCompletoPCU("4.01.03.03.03.01.00.00", entrega.getPlanVigente()); //*  -1;
+for (Object[] objects : cuenta6) {
+  mapaAuxSubramo.put(objects[0].toString(), mapaAuxSubramo.get(objects[0]) + (((Long) objects[1]) * -1));
+}
+List<Object[]> cuenta7=cs.getSumCuentaByCodigoCompletoPCU("5.01.02.02.02.02.01.00", entrega.getPlanVigente()); //*  1; MIRAR
+for (Object[] objects : cuenta7) {
+  mapaAuxSubramo.put(objects[0].toString(), mapaAuxSubramo.get(objects[0]) + (((Long) objects[1]) * 1));
+}
+List<Object[]> cuenta8=cs.getSumCuentaByCodigoCompletoPCU("4.01.05.05.01.01.01.00", entrega.getPlanVigente()); //*  -1;
+for (Object[] objects : cuenta8) {
+  mapaAuxSubramo.put(objects[0].toString(), mapaAuxSubramo.get(objects[0]) + (((Long) objects[1]) * -1));
+}
+List<Object[]> cuenta9=cs.getSumCuentaByCodigoCompletoPCU("5.01.04.04.04.11.01.01", entrega.getPlanVigente()); //*  1;
+for (Object[] objects : cuenta9) {
+  mapaAuxSubramo.put(objects[0].toString(), mapaAuxSubramo.get(objects[0]) + (((Long) objects[1]) * 1));
+}
+List<Object[]> cuenta10=cs.getSumCuentaByCodigoCompletoPCU("5.01.04.04.04.12.01.01", entrega.getPlanVigente()); //*   1;
+for (Object[] objects : cuenta10) {
+  mapaAuxSubramo.put(objects[0].toString(), mapaAuxSubramo.get(objects[0]) + (((Long) objects[1]) * 1));
+}
+List<Object[]> cuenta11=cs.getSumCuentaByCodigoCompletoPCU("4.01.05.05.02.01.01.00", entrega.getPlanVigente()); //*   -1;
+for (Object[] objects : cuenta11) {
+  mapaAuxSubramo.put(objects[0].toString(), mapaAuxSubramo.get(objects[0]) + (((Long) objects[1]) * -1));
+}
+

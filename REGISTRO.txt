@@ -1,0 +1,39 @@
+Registro
+========
+
+19/9: Declaro al servidor destinado a MicroStrategy en condiciones. Se le da aviso a Gabriel, el técnico instalador.
+
+25/9: Ante la falta de respuesta de Gabriel decidí instalar MicroStrategy por mi cuenta. Comencé a familiarizarme con SQL 
+Server 2008.
+
+26/9: Denise me envía el modelo físico terminado y scripts SQL de creación de tablas. Gabriel me envía la licencia para el 
+servidor de MicroStrategy.
+
+01/10: Preparé las bases de datos Warehouse y Metadata en SQL Server. Generé las tablas del modelo físico. Hubo que hacerles 
+correcciones a los scripts SQL generadores de tablas. Dejé el servidor de MicroStrategy funcionando.
+
+14/11: Base de datos parcialmente cargada con datos.
+
+26/11: Denise comenzó a trabajar con la programación del Panel.
+
+27/11: Se le pidió a Geraldine logo de la Superintendencia y paleta de colores.
+
+29/11: Vino Denise con Maxi. Ximena facilitó lo que se le pidío a Geraldine el día 27/11.
+
+04/12: ¿Vino Maxi?
+
+06/12: Vino Maxi.
+
+10/12: Vino Joaquín.
+
+12/12: Vino Joaquín. Faltan datos. Tablas temporales me están tomando tiempo.
+
+13/12: Datos temporales cargados (luego de 1 semana).
+
+16/12: Auditores y actuarios cargados. Se consigue la cantidad de datos necesarios para presentar 2 pantallas el día 19/12.
+
+17/12: Vino Joaquín.
+
+18/12: Vino Maxi.
+
+19/12: Vino Denise. Se canceló la reunión con las autoridades prevista para la fecha.
