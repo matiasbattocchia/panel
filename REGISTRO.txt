@@ -36,4 +36,6 @@ correcciones a los scripts SQL generadores de tablas. Dejé el servidor de Micro
 
 18/12: Vino Maxi.
 
-19/12: Vino Denise. Se canceló la reunión con las autoridades prevista para la fecha.
+19/12: Vino Denise. Se canceló la reunión con las autoridades prevista para la fecha, se pasó al día siguiente.
+
+20/12: Vinieron Denise y Maxi. Se canceló nuevamente la reunión.

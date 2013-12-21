@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'datamancer', '0.0.2'
+gem 'datamancer', :github => 'matiasbattocchia/datamancer'
 
 platform :ruby do
   gem 'activerecord', '~> 3.2'

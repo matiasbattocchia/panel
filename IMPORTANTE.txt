@@ -9,6 +9,7 @@ Datamancer
 * Don't allow "extract: true" without block.
 * rename_field en transform.
 * Lambda for default value?
+* !!! Envolver los errores de ActiveRecord para hacerlos más legibles.
 
 ==========
 
@@ -18,6 +19,18 @@ Tablas no usadas
 
   * lk_loc_tipo_local
   * lk_jur_jurisdiccion
+
+ft_balance
+----------
+
+  * ArrM: Primary keys.
+  * i_signo a int
+  * ids a varchar(36)
+  * fechas a date
+  * Subramos NULL permitido. Hay algunas cuentas que no están asociadas a subramos.
+  * Nota: Hay cuentas que se dejan afuera por pertener a balances no definitivos.
+  * Suma importes anteriores dejada en 0 por ahora.
+  * Fechas NULL permitido.
 
 lk_bal_*
 --------
