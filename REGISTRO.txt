@@ -38,4 +38,14 @@ correcciones a los scripts SQL generadores de tablas. Dejé el servidor de Micro
 
 19/12: Vino Denise. Se canceló la reunión con las autoridades prevista para la fecha, se pasó al día siguiente.
 
-20/12: Vinieron Denise y Maxi. Se canceló nuevamente la reunión.
+20/12: Vinieron Denise y Maxi. Se canceló nuevamente la reunión. A partir de este día me tomé semana de estudio y luego vacaciones.
+
+20/01: Regresé de las vacaciones. Cargué las tablas de indicadores. Le escribí a Denise para que regresen.
+
+27/01: Vino Maxi.
+
+28/01: Vino Maxi. Reunión con Caputto, Wolf, Navarro en la que expuse la necesidad de un programador más para los ETL.
+
+29/01: Vino Maxi.
+
+30/01: Vino Maxi. Reunión con Caputto, Wolf, Omar Cavallero, Adriana en la que se habló acerca del Inciso K y la homogenización de los ramos utilizados en distintas gerencias para clasificar a las compañías. Se completó la carga de datos para el nivel 1.

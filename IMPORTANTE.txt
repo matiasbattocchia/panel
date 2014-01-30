@@ -10,6 +10,10 @@ Datamancer
 * rename_field en transform.
 * Lambda for default value?
 * !!! Envolver los errores de ActiveRecord para hacerlos más legibles.
+* unique() debería chequear que el campo que se le pasa exista.
+* sacar type_default porque confunde, mejor explicitar type y default por separado.
+* sacar empty_default porque confunde, mejor explicitar type y empty_as_nil por separado.
+* Bug ActiveRecord "no hay columna 'true'" al insertar valores true/false en una columna con tipo de dato 'bit'.
 
 ==========
 
@@ -19,6 +23,39 @@ Tablas no usadas
 
   * lk_loc_tipo_local
   * lk_jur_jurisdiccion
+  * lk_com_ramo
+  * lk_com_segmentacion
+
+Tablas que no existen
+---------------------
+
+  * Las relacionadas con entregas/balances.
+
+ft_inversiones
+--------------
+
+  * ArrM: Primary keys.
+  * Borré id_inv_tipo_especie, id_inv_tipo_subespecie.
+  * id_ent_entrega de varchar(20) a nvarchar(36).
+  * Fechas de datetime a date.
+  * Eliminé la relación con lk_inv_incisok.
+  * Eliminé la relación con lk_inv_inversiones.
+  * Redefiní la relación con lk_inv_moneda_origen.
+  * Redefiní la relación con lk_pais.
+  * id_inv_incisok a bit.
+  * Chau ISIN.
+  * Estoy usando la columna valor_contable para las inversiones.
+
+lk_bal_agrup_indicador
+----------------------
+
+  * ArrM: ds_ permitía valores null.
+  * ArrM: ds_ tamaño cambiado a 150.
+
+rl_bal_cta_nivel8_indicador
+---------------------------
+
+ * ArrM: Primary keys.
 
 ft_balance
 ----------

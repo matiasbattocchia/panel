@@ -4,7 +4,14 @@ require 'active_record'
 
 include Datamancer
 
-bases = YAML.load_file('/home/matias/proyectos/panel/bases_de_datos.yml')
+bases = YAML.load_file('bases_de_datos.yml')
+
+cronogramas =
+extract(from: bases['sinensup'], table: 'CRONOGRAMAS', exclude: true) do
+  field 'id_tie_trimestre', map: 'periodo'
+  field 'tipo_entrega', reject_unless: 'Trimestral'
+  field 'id_cron_cronograma', map: 'ID'
+end
 
 entregas =
 extract(from: bases['sinensup'], table: 'ENTREGAS', exclude: true) do
@@ -17,18 +24,18 @@ balances =
 extract from: bases['sinensup'], table: 'PLAN_CUENTAS_UNIFICADO', exclude: true do
   field 'id_bal_balance', map: 'ID'
   field 'id_ent_version_rectificativo', map: 'version_rectificativo',
-    type: String, default: '0'
-  field 'id_ent_entrega', map: 'ID_entrega'
-  field 'id_ent_fecha_entrega', map: 'fecha_entrega', type: Date
-  field 'id_ent_fecha_presentacion', map: 'fecha_presentacion', type: Date
-  field 'id_ent_fecha_validacion', map: 'fecha_validacion', type: Date
+    type: Integer, default: 0
+  # field 'id_ent_entrega', map: 'ID_entrega'
+  # field 'id_ent_fecha_entrega', map: 'fecha_entrega', type: Date
+  # field 'id_ent_fecha_presentacion', map: 'fecha_presentacion', type: Date
+  # field 'id_ent_fecha_validacion', map: 'fecha_validacion', type: Date
 end
 
-cuentas = extract( from: bases['sinensup'], table: 'CUENTAS', exclude: true, top: 100000) do
+cuentas = extract(from: bases['sinensup'], table: 'CUENTAS', exclude: true) do
   field 'id_bal_balance', map: 'ID_plan_de_cuentas_unificado'
   field 'codigo_id_sinensup', map: 'ID_codigo'
   field 'id_bal_subramo', map: 'ID_subramo', type: Integer
-  field 'i_bal_imp_balance', map: 'importe', reject_if: 0.0
+  field 'i_bal_imp_balance', map: 'importe', reject_if: 0
 end
 
 # Esto es porque para una entrada dada en el balance de una compañía,
@@ -68,6 +75,12 @@ end
 codigos =
 transform codigos_sinensup, join: codigos_panel, on: 'codigo_completo'
 
+entregas =
+transform entregas, join: cronogramas, on: 'id_cron_cronograma' do
+  del_field 'id_cron_cronograma'
+  del_field 'tipo_entrega'
+end
+
 balances =
 transform balances, join: entregas, on: 'id_bal_balance'
 
@@ -76,8 +89,10 @@ transform cuentas, join: balances, on: 'id_bal_balance'
 
 cuentas =
 transform cuentas, join: codigos, on: 'codigo_id_sinensup' do
-  del_field 'codigo_id_sinensup'
   del_field 'codigo_completo'
+  del_field 'id_bal_balance'
+  del_field 'codigo_id_sinensup'
+  field     'id_tie_trimestre', id_tie_trimestre.gsub('-', '0').to_i
   new_field 'i_bal_signo', codigo_completo[0] == '4' ? -1 : 1
   new_field 'i_bal_saldo_anterior', 0
 end
