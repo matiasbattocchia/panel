@@ -16,6 +16,14 @@ extract(from: bases['sinensup'], table: 'INV_SUBTIPOS_ESPECIE', exclude: true) d
     strip: true
 end
 
+subtipos_plazo_fijo =
+extract(from: bases['sinensup'], table: 'TIPOS_DEPOSITO', exclude: true) do
+  field 'ds_inv_subtipo_especie', map: 'descripcion',
+    strip: true
+  field 'id_inv_subtipo_especie', map: 'ID',
+    type: Integer
+end
+
 mapa_tipos = {
   'ACCION' => 'AC',
   'FONDO_COMUN' => 'FC',
@@ -31,14 +39,21 @@ transform subtipos do
   field 'ds_inv_subtipo_especie', ds_inv_subtipo_especie.gsub('FF - ', '').gsub('´', '')
 end
 
+subtipos_plazo_fijo =
+transform subtipos_plazo_fijo do
+  field 'id_inv_subtipo_especie', id_inv_subtipo_especie + 100
+  new_field 'id_inv_tipo_especie', 'PF'
+end
+
 tipos = [
   {id_inv_tipo_especie: 'AC', ds_inv_tipo_especie: 'Acción'},
-  {id_inv_tipo_especie: 'FC', ds_inv_tipo_especie: 'Fondo Común'},
   {id_inv_tipo_especie: 'FF', ds_inv_tipo_especie: 'Fideicomiso'},
+  {id_inv_tipo_especie: 'FC', ds_inv_tipo_especie: 'Fondo Común'},
   {id_inv_tipo_especie: 'ON', ds_inv_tipo_especie: 'Obligación Negociable'},
   {id_inv_tipo_especie: 'OP', ds_inv_tipo_especie: 'Opción'},
+  {id_inv_tipo_especie: 'PF', ds_inv_tipo_especie: 'Plazo Fijo'},
   {id_inv_tipo_especie: 'TP', ds_inv_tipo_especie: 'Título Público'}
 ]
 
 load tipos, to: bases['panel'], table: 'lk_inv_tipo_especie', append: false
-load subtipos, to: bases['panel'], table: 'lk_inv_subtipo_especie', append: false
+load subtipos + subtipos_plazo_fijo, to: bases['panel'], table: 'lk_inv_subtipo_especie', append: false

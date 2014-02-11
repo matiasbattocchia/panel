@@ -6,7 +6,7 @@ Datamancer
 * Posible bug con los condicionales de línea en transform cuando "exclude: true".
 * Multimapping.
 * Fastcheck / temporal data store / reanudar.
-* Don't allow "extract: true" without block.
+* Don't allow "exclude: true" without block.
 * rename_field en transform.
 * Lambda for default value?
 * !!! Envolver los errores de ActiveRecord para hacerlos más legibles.
@@ -14,6 +14,8 @@ Datamancer
 * sacar type_default porque confunde, mejor explicitar type y default por separado.
 * sacar empty_default porque confunde, mejor explicitar type y empty_as_nil por separado.
 * Bug ActiveRecord "no hay columna 'true'" al insertar valores true/false en una columna con tipo de dato 'bit'.
+* Bug en Datamancer: la opción append: true la load() sólo funciona si es explícita; se suponía que fuera por defecto.
+* Bug en Datamancer: dos datastreams sólo se pueden concatenar si el orden de los atributos en ambos coinciden.
 
 ==========
 
