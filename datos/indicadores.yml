@@ -191,6 +191,15 @@ Indicador Inversion:
   Funciones:
     Inversiones en relación al Total de Activos (%): Inversiones / Activo
 
+
+Primas Emitidas Netas de Anulación:
+  - 5.01.01.01.01.01.01.00
+  - 5.01.01.01.01.02.01.00
+  - 5.01.01.01.01.03.02.00
+  - 4.01.04.04.04.01.00.00
+  - 4.01.04.04.04.02.00.00
+
+
 Indicadores:
   # Acá se declaran los conceptos que
   # se utilizan en las funciones.
@@ -249,6 +258,12 @@ Indicadores:
       - 1.02.00.00.00.00.00.00
     Pasivo:
       - 2.00.00.00.00.00.00.00
+    Pasivo por Siniestros Pendientes Administrativos:
+      - 2.01.01.01.01.01.00.00
+    Pasivo por Siniestros Pendientes Juicios:
+      - 2.01.01.01.01.02.00.00
+    Pasivo por Siniestros Pendientes Mediaciones:
+      - 2.01.01.01.01.03.00.00
     Patrimonio:
       - 3.00.00.00.00.00.00.00
     Primas Cedidas:
@@ -418,9 +433,3 @@ Indicadores:
 # b: 0.50
 # Pond Riesgo de Reaseguro: a * Nivel de Cesion + b * Nivel de Siniestros Reintegrados
 
-# Primas Emitidas Netas de Anulación:
-#   - 5.01.01.01.01.01.01.00
-#   - 5.01.01.01.01.02.01.00
-#   - 5.01.01.01.01.03.02.00
-#   - 4.01.04.04.04.01.00.00
-#   - 4.01.04.04.04.02.00.00

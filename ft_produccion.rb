@@ -11,7 +11,7 @@ datos =
 extract from: '/home/matias/proyectos/panel/datos/producción_2006-2012.csv' do
   field 'id_com_compania', map: 'compania',
     type: Integer
-  field 'id_com_provincia', map: 'provincia',
+  field 'id_geo_provincia', map: 'provincia',
     type: Integer
   field 'id_pro_ramo_produccion', map: 'ramo',
     type: Integer

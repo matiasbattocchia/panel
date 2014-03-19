@@ -149,7 +149,8 @@ transform data do
   field 'ds_com_cuit', :slice, 0...11
   field 'ds_com_codigo_postal', :slice, 0...8
 
-  field 'id_com_reaseguradora', id_com_reaseguradora == 1 ? 'Sí' : 'No'
+  field 'id_com_reaseguradora', id_com_actividad1 == 8 ||
+                                id_com_actividad1 == 15 ? 'Sí' : 'No'
 
   field 'ds_com_cuit',
     '00000000000' if ds_com_cuit =~ /^(1*|4*)$/

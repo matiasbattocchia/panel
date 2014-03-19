@@ -124,7 +124,8 @@ a_i.upto(a_f) do |año|
           if meses_en_el_mestre == 1
             MESES[mestre - 1]
           else
-            ORDINALES[mestre - 1]
+            # Ejemplo: Primero '14, pero al single quote hay que escaparlo con otro.
+            ORDINALES[mestre - 1] + " ''" + año.to_s[-2..-1]
           end
  
         registros[meses_en_el_mestre] << registro_aux
