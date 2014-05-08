@@ -89,3 +89,27 @@ correcciones a los scripts SQL generadores de tablas. Dejé el servidor de Micro
 17/03: Vinieron Maxi y Denise. Se avanzó bastante sobre los aspectos que habían molestado a Fraschina.
 
 17/03: Vinieron Maxi y Denise. Comenzamos la validación de datos con Alejandra y Adriana.
+
+18/03: Vino Maxi.
+
+19/03: Vino Maxi.
+
+20/03: Vinieron Maxi y Alejandra. Estuvieron trabajando en la vista de capital mínimo y cobertura.
+
+21/03: Vino Maxi. Estuvo trabajando en la pantalla de inversiones trimestrales.
+
+Del 24/03 al 04/04: No hubo mucha actividad. Me dediqué a mejorar el DSL; no ingresé datos nuevos. Maxi estuvo trabajando en la estética del panel. 02/04 fue feriado.
+
+07/04: Vino Maxi.
+
+08/04: Vino Maxi.
+
+09/04: Fue la reunión de PLANeS. La exposición de los avances del panel fue bien recibida.
+
+10/04: Paro general UTA, no se trabajó por razones de fuerza mayor.
+
+11/04: No vino nadie. Maxi enfermo.
+
+14/04: Vinieron Maxi y Denise.
+
+15/04: Vino Maxi.
