@@ -112,4 +112,6 @@ Del 24/03 al 04/04: No hubo mucha actividad. Me dediqué a mejorar el DSL; no in
 
 14/04: Vinieron Maxi y Denise.
 
-15/04: Vino Maxi.
+15/04: Vino Maxi. Fue el último día que vino alguien de MicroStrategy, básicamente porque no los llamé. Estoy trabajando en la nueva versión de Datamancer.
+
+05/05: Arrancó a trabajar Lisandro. Está reescribiendo los procesos ETL en Pentaho Kettle.

@@ -6,36 +6,65 @@ include Datamancer
 
 bases = YAML.load_file('bases_de_datos.yml')
 
-cronogramas =
-extract(from: bases['sinensup'], table: 'CRONOGRAMAS', exclude: true) do
-  field 'id_tie_trimestre', map: 'periodo'
-  field 'tipo_entrega', reject_unless: 'Trimestral'
-  field 'id_cron_cronograma', map: 'ID'
+companias =
+extract(from: bases['panel'], table: 'LK_COM_COMPANIAS', exclude: true) do
+  field 'id_com_compania'
+  field 'id_com_reaseguradora', reject_if: 'Sí'
+  field 'id_com_cierre_ejercicio', reject_unless: [6, 12]
 end
 
 entregas =
 extract(from: bases['sinensup'], table: 'ENTREGAS', exclude: true) do
   field 'id_com_compania', map: 'ID_compania', type: Integer
-  field 'id_cron_cronograma', map: 'ID_cronograma'
-  field 'id_bal_balance', map: 'ID_ultima_entrega', reject_if: nil
+  field 'id_cronograma', map: 'ID_cronograma'
+  field 'id_balance', map: 'ID_ultima_entrega', reject_if: nil
+end
+
+entregas =
+transform entregas, join: companias, on: 'id_com_compania' do
+  del_field 'id_com_reaseguradora'
+  del_field 'id_com_cierre_ejercicio'
+end
+
+cronogramas =
+extract(from: bases['sinensup'], table: 'CRONOGRAMAS', exclude: true) do
+  field 'id_tie_trimestre', map: 'periodo'
+  field 'tipo_entrega', reject_unless: 'Trimestral'
+  field 'id_cronograma', map: 'ID'
+end
+
+entregas =
+transform entregas, join: cronogramas, on: 'id_cronograma' do
+  del_field 'tipo_entrega'
+  del_field 'id_cronograma'
 end
 
 balances =
 extract from: bases['sinensup'], table: 'PLAN_CUENTAS_UNIFICADO', exclude: true do
-  field 'id_bal_balance', map: 'ID'
-  field 'id_ent_version_rectificativo', map: 'version_rectificativo',
+  field 'id_balance', map: 'ID'
+  field 'id_cue_version_rectificativo', map: 'version_rectificativo',
     type: Integer, default: 0
-  # field 'id_ent_entrega', map: 'ID_entrega'
-  # field 'id_ent_fecha_entrega', map: 'fecha_entrega', type: Date
-  # field 'id_ent_fecha_presentacion', map: 'fecha_presentacion', type: Date
-  # field 'id_ent_fecha_validacion', map: 'fecha_validacion', type: Date
 end
 
-cuentas = extract(from: bases['sinensup'], table: 'CUENTAS', exclude: true) do
-  field 'id_bal_balance', map: 'ID_plan_de_cuentas_unificado'
-  field 'codigo_id_sinensup', map: 'ID_codigo'
-  field 'id_bal_subramo', map: 'ID_subramo', type: Integer
-  field 'i_bal_imp_balance', map: 'importe', reject_if: 0
+balances =
+transform balances, join: entregas, on: 'id_balance' do
+  field 'id_tie_trimestre'
+  field 'id_com_compania'
+  field 'id_balance'
+  field 'id_cue_version_rectificativo'
+end
+
+balances.each do |balance|
+  cuentas = extract(
+    from: bases['sinensup'],
+    table: 'CUENTAS',
+    where: "ID_plan_de_cuentas_unificado = #{balance[:id_balance]}",
+    exclude: true) do
+      field 'id_bal_balance', map: 'ID_plan_de_cuentas_unificado'
+      field 'codigo_id_sinensup', map: 'ID_codigo'
+      field 'id_bal_subramo', map: 'ID_subramo', type: Integer
+      field 'i_bal_imp_balance', map: 'importe', reject_if: 0
+  end
 end
 
 # Esto es porque para una entrada dada en el balance de una compañía,
@@ -75,14 +104,7 @@ end
 codigos =
 transform codigos_sinensup, join: codigos_panel, on: 'codigo_completo'
 
-entregas =
-transform entregas, join: cronogramas, on: 'id_cron_cronograma' do
-  del_field 'id_cron_cronograma'
-  del_field 'tipo_entrega'
-end
 
-balances =
-transform balances, join: entregas, on: 'id_bal_balance'
 
 cuentas =
 transform cuentas, join: balances, on: 'id_bal_balance'

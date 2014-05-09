@@ -1,6 +1,6 @@
-datos/
+datos/privados
+documentación/privada
 viejo/
 .ruby-version
 Gemfile.lock
 bases_de_datos.yml
-id_plazos_fijos.csv
