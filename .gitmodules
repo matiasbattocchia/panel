@@ -1,0 +1,6 @@
+[submodule "datos/países/country-list"]
+	path = datos/países/country-list
+	url = https://github.com/umpirsky/country-list
+[submodule "datos/países/countries"]
+	path = datos/países/countries
+	url = https://github.com/mledoze/countries
