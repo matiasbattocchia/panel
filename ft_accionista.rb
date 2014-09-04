@@ -21,7 +21,7 @@ extract from: bases['entidades'], table: 'Accionistas', exclude: true do
     strip: true, empty_default: 'SIN REGISTRAR'
   field 'id_acc_pais_inversor', map: 'Inversor_DL',
     strip: true, empty_default: 'SIN REGISTRAR'
-  field 'i_acc_cant_acciones', map: 'Cant_Acciones',
+  field 'i_acc_cant_acciones', map: 'Cant_Acciones_Susc',
     type_default: Integer
   field 'i_acc_porc_participacion', map: 'Participacion',
     type_default: Float
